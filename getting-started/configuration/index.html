@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta name="generator" content="VictorPy 0.1.32" />
+
+    <title>Configuration</title>
+
+    
+        <meta description="Configuring your first site.">
+    
+
+    
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/css/borland.css">
+
+    <style>
+        body {
+            padding-top: 80px;
+            font-size: 18px;
+        }
+    </style>
+
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://pascallando.github.io/index.xml">
+    
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button> <a class="navbar-brand" href="/">VictorPy</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="nav navbar-nav">
+                     
+                        <li>
+                            <a href="/getting-started/">Getting started</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/content/">Writing content</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/templates/">Templates</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/build-process/">The site building process</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/extra/">Extra</a>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+    <div class="row">
+        <div class="col-md-8 col-lg-8">
+
+            <h1>Configuration</h1>
+
+            <p>Bootstrapping a VictorPy 0.1.32 site is very easy:</p>
+<ol>
+<li>Create a directory for your site.</li>
+<li>Create a <code>config.yaml</code> file in it.</li>
+<li>Ready to write content!</li>
+</ol>
+<h2 id="the-config-file">The config file</h2>
+<p>All your static site configuration is held by the <code>config.yaml</code> file.</p>
+<p><div class="alert alert-info"><strong style="font-variant: small-caps">Yaml format</strong> –
+    The config file is written using Yaml formating language. See <a href="http://yaml.org/">Yaml official doc</a> for further informations.
+</div></p>
+<h4 id="config-yaml">config.yaml</h4>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="s">&quot;My</span><span class="nv"> </span><span class="s">site&quot;</span>
+<span class="l l-Scalar l-Scalar-Plain">base_url</span><span class="p p-Indicator">:</span> <span class="s">&quot;http://mysite.com&quot;</span>
+</pre></div>
+<h3 id="parameters">Parameters</h3>
+<p>VictorPy 0.1.32 uses a bunch of default parameters to build your site:</p>
+<table>
+<thead><tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Default</th>
+<th style="text-align:left">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>actions_dir_name</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">"actions"</td>
+<td style="text-align:left">The directory containing custom actions to trigger via <a href="/build-process/hooks/">hooks</a>.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>amazon_id</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">None</td>
+<td style="text-align:left">If defined, used by the <a href="/templates/shortcodes/#amazon">amazon shortcode</a>.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>base_url</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">""</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>build_dir_name</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">"public"</td>
+<td style="text-align:left">The directory where generated files should be written</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>content_dir_name</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">"content"</td>
+<td style="text-align:left">The directory containing your source markdown content files.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>debug</code></td>
+<td style="text-align:left">Boolean</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">When True, adds page context infos in the browser console and source file opening button.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>enable_shortcodes</code></td>
+<td style="text-align:left">Boolean</td>
+<td style="text-align:left">True</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>enable_headers_id</code></td>
+<td style="text-align:left">Boolean</td>
+<td style="text-align:left">True</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>hooks</code></td>
+<td style="text-align:left">Dict</td>
+<td style="text-align:left">{}</td>
+<td style="text-align:left">A hash of hooks. See <a href="/build-process/hooks/">Hooks</a> doc.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>image</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">"default.jpg"</td>
+<td style="text-align:left">A default image illustrating your site. File should be located in <code>/static/images/</code>.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>port</code></td>
+<td style="text-align:left">Number</td>
+<td style="text-align:left">5000</td>
+<td style="text-align:left">The port number of the live server.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>routes</code></td>
+<td style="text-align:left">Dict</td>
+<td style="text-align:left"><a href="/build-process/routes/">{...}</a></td>
+<td style="text-align:left">A hash containing some special routes. See <a href="/build-process/routes/">Routes</a> doc.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>static_dir_name</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">"static"</td>
+<td style="text-align:left">Your CSS/JS… files directory.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>templates_dir_name</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">"templates"</td>
+<td style="text-align:left">The directory where VictorPy 0.1.32 should find user defined templates.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>title</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">""</td>
+</tr>
+</tbody>
+</table>
+<h3 id="additional-parameters">Additional parameters</h3>
+<p>In addition, you can provide extra parameters.</p>
+<p>Each parameter will be added to every <a href="/templates/data/">page context</a>, allowing you to use it within your <a href="/templates/">templates</a> and <a href="/templates/shortcodes/">shortcodes</a>.</p>
+<h4 id="config-yaml-1">config.yaml</h4>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="s">&quot;My</span><span class="nv"> </span><span class="s">site&quot;</span>
+<span class="l l-Scalar l-Scalar-Plain">base_url</span><span class="p p-Indicator">:</span> <span class="s">&quot;http://mysite.com&quot;</span>
+
+<span class="l l-Scalar l-Scalar-Plain">my_param</span><span class="p p-Indicator">:</span> <span class="s">&quot;Yeah!&quot;</span>
+<span class="l l-Scalar l-Scalar-Plain">another_one</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">123</span>
+</pre></div>
+
+        </div>
+
+        <div class="col-md-4 col-lg-4">
+
+            <h3>Site tags</h3>
+            <ul>
+                
+                    <li>
+                        <a href="/tags/serve/">serve</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/build/">build</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/hook/">hook</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/action/">action</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/customization/">customization</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/path/">path</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/Markdown/">Markdown</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/front matter/">front matter</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/Yaml/">Yaml</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/tags/">tags</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/draft/">draft</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/images/">images</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/CSS/">CSS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/JS/">JS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/assets/">assets</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/contact/">contact</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/syndication/">syndication</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/config/">config.yaml</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/debug/">debug</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/pip/">pip</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/structure/">structure</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/context/">context</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/mini-context/">mini-context</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/advanced/">advanced</a>
+                    </li>
+                
+            </ul>
+
+        </div>
+    </div>
+
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script>
+        $("table").addClass("table table-hover");
+        $("div.page img").addClass("img-responsive");
+    </script>
+
+    
+
+</body>
+</html>

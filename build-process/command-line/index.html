@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta name="generator" content="VictorPy 0.1.32" />
+
+    <title>Command line</title>
+
+    
+        <meta description="Learn how to use the command line tools to create/build your site.">
+    
+
+    
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/css/borland.css">
+
+    <style>
+        body {
+            padding-top: 80px;
+            font-size: 18px;
+        }
+    </style>
+
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://pascallando.github.io/index.xml">
+    
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button> <a class="navbar-brand" href="/">VictorPy</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="nav navbar-nav">
+                     
+                        <li>
+                            <a href="/getting-started/">Getting started</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/content/">Writing content</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/templates/">Templates</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/build-process/">The site building process</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/extra/">Extra</a>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+    <div class="row">
+        <div class="col-md-8 col-lg-8">
+
+            <h1>Command line</h1>
+
+            <p>VictorPy 0.1.32 comes with a few command line tools.</p>
+<h2 id="live-server">Live server</h2>
+<p>When working on your content, you don't want to manually rebuild your site content every time you make a single change.</p>
+<p>You may want to use the <strong>live server</strong>, which will:</p>
+<ul>
+<li>Serve your pages, live in the browser.</li>
+<li>Restart automatically when you create/update a content file.</li>
+</ul>
+<h3 id="starting-the-live-server">Starting the live server</h3>
+<p>In a terminal, make sure you are in your project root folder, and then type:</p>
+<div class="highlight"><pre><span></span>$ victorpy serve
+</pre></div>
+<p><div class="alert alert-info"><strong style="font-variant: small-caps">Shortcut</strong> –
+You can also just type <code>victorpy</code> to start the live server.
+</div></p>
+<p>VictorPy 0.1.32 should start quickly, build your site in memory, serve it and display a few messages on the console:</p>
+<div class="highlight"><pre><span></span>INFO VictorPy
+INFO  * Running on http://127.0.0.1:5000/ <span class="o">(</span>Press CTRL+C to quit<span class="o">)</span>
+</pre></div>
+<p>By now, you site is live locally!</p>
+<p>Open a browser at <a href="http://127.0.0.1:5000/">http://127.0.0.1:5000/</a> and see what you get…</p>
+<p><div class="alert alert-info"><strong style="font-variant: small-caps">Port</strong> –
+Optionnaly, you can specify a port number with the <code>-p</code> (or <code>--port</code>) option.
+</div></p>
+<h2 id="building-your-site">Building your site</h2>
+<p>The building process allows you to create your site HTML files, ready to upload to your server:</p>
+<div class="highlight"><pre><span></span>$ victorpy build
+</pre></div>
+<p>The site if built in the <code>public</code> directory (see <a href="/getting-started/configuration/">Configuration</a> to change this directory).</p>
+
+        </div>
+
+        <div class="col-md-4 col-lg-4">
+
+            <h3>Site tags</h3>
+            <ul>
+                
+                    <li>
+                        <a href="/tags/serve/">serve</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/build/">build</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/hook/">hook</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/action/">action</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/customization/">customization</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/path/">path</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/Markdown/">Markdown</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/front matter/">front matter</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/Yaml/">Yaml</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/tags/">tags</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/draft/">draft</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/images/">images</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/CSS/">CSS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/JS/">JS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/assets/">assets</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/contact/">contact</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/syndication/">syndication</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/config/">config.yaml</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/debug/">debug</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/pip/">pip</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/structure/">structure</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/context/">context</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/mini-context/">mini-context</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/advanced/">advanced</a>
+                    </li>
+                
+            </ul>
+
+        </div>
+    </div>
+
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script>
+        $("table").addClass("table table-hover");
+        $("div.page img").addClass("img-responsive");
+    </script>
+
+    
+
+</body>
+</html>

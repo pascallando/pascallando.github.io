@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta name="generator" content="VictorPy 0.1.32" />
+
+    <title>Contact form</title>
+
+    
+        <meta description="A simple no-backend contact form.">
+    
+
+    
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/css/borland.css">
+
+    <style>
+        body {
+            padding-top: 80px;
+            font-size: 18px;
+        }
+    </style>
+
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://pascallando.github.io/index.xml">
+    
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button> <a class="navbar-brand" href="/">VictorPy</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="nav navbar-nav">
+                     
+                        <li>
+                            <a href="/getting-started/">Getting started</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/content/">Writing content</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/templates/">Templates</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/build-process/">The site building process</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/extra/">Extra</a>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+    <div class="row">
+        <div class="col-md-8 col-lg-8">
+
+            <h1>Contact form</h1>
+
+            <p>VictorPy 0.1.32 ships with a simple no-backend contact form. Feel free to use it.</p>
+<p>This contact form is used by the present site, you can test it: <a href="/contact/">contact me</a>!</p>
+<h2 id="configuration">Configuration</h2>
+<p>The contact form uses <a href="https://formspree.io/">formspree</a> under the wood.</p>
+<p>The only thing you need to set is the email address to which the contact mails should be sent: this is done by setting the <code>email</code> config parameter.</p>
+<h4 id="config-yaml">config.yaml</h4>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">email</span><span class="p p-Indicator">:</span> <span class="err">`</span><span class="l l-Scalar l-Scalar-Plain">mysupermail@server.com</span>
+</pre></div>
+<p>Note that you can also override the route for this form (see <a href="/build-process/routes/">routes</a> for more details):</p>
+<h4 id="config-yaml-1">config.yaml</h4>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">routes</span><span class="p p-Indicator">:</span>
+  <span class="s">&#39;contact.html&#39;</span><span class="p p-Indicator">:</span> <span class="s">&quot;/io/contact-me-here&quot;</span>
+</pre></div>
+<p>Once your site deployed, the only thing you need to do is to submit the form once in order to confirm your email address and avoid spam.</p>
+
+        </div>
+
+        <div class="col-md-4 col-lg-4">
+
+            <h3>Site tags</h3>
+            <ul>
+                
+                    <li>
+                        <a href="/tags/serve/">serve</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/build/">build</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/hook/">hook</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/action/">action</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/customization/">customization</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/path/">path</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/Markdown/">Markdown</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/front matter/">front matter</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/Yaml/">Yaml</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/tags/">tags</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/draft/">draft</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/images/">images</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/CSS/">CSS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/JS/">JS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/assets/">assets</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/contact/">contact</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/syndication/">syndication</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/config/">config.yaml</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/debug/">debug</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/pip/">pip</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/structure/">structure</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/context/">context</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/mini-context/">mini-context</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/advanced/">advanced</a>
+                    </li>
+                
+            </ul>
+
+        </div>
+    </div>
+
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script>
+        $("table").addClass("table table-hover");
+        $("div.page img").addClass("img-responsive");
+    </script>
+
+    
+
+</body>
+</html>

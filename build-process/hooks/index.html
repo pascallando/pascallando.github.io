@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta name="generator" content="VictorPy 0.1.32" />
+
+    <title>Hooks</title>
+
+    
+        <meta description="Hooks are a way to plug extra features to the generator.">
+    
+
+    
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/css/borland.css">
+
+    <style>
+        body {
+            padding-top: 80px;
+            font-size: 18px;
+        }
+    </style>
+
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://pascallando.github.io/index.xml">
+    
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button> <a class="navbar-brand" href="/">VictorPy</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="nav navbar-nav">
+                     
+                        <li>
+                            <a href="/getting-started/">Getting started</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/content/">Writing content</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/templates/">Templates</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/build-process/">The site building process</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/extra/">Extra</a>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+    <div class="row">
+        <div class="col-md-8 col-lg-8">
+
+            <h1>Hooks</h1>
+
+            <p>Hooks are a way to plug extra features (called <strong>actions</strong>) to VictorPy 0.1.32 at some pre-defined points. Common hooks use cases are: copying files, transpiling [some language] to JS/CSS/whatever, pinging some external service…</p>
+<p>VictorPy 0.1.32 includes the fallowing hooks:</p>
+<ul>
+<li><code>after_render</code>: when the pages rendering process is completed.</li>
+<li><code>affet_build</code>: when the site building process is completed.</li>
+</ul>
+<h2 id="configuring-hooks">Configuring hooks</h2>
+<p>Configuring hook is generally two steps process:</p>
+<ol>
+<li>Linking an action to a hook (i.e. <em>when</em> to do <em>what</em>…).</li>
+<li>Configuring each action.</li>
+</ol>
+<p>For example, if you want to transpile your Less files to CSS each time your site has been rendered, you will have to say that you want to trigger the Less to CSS transpiling process after rendering <strong>and</strong> to tell VictorPy 0.1.32 where your Less source files are located andwhere you want to create the CSS files.</p>
+<p>Linking actions to hooks is done using the <code>hooks</code> <a href="/getting-started/configuration/">config</a> parameter:</p>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">hooks</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">after_render</span><span class="p p-Indicator">:</span>              <span class="c1"># the hook</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">compile_less_files</span>   <span class="c1"># the action to launch</span>
+        <span class="c1"># ...</span>
+</pre></div>
+<p><div class="alert alert-info"><strong style="font-variant: small-caps">Processing order</strong> –
+The actions list is ordered: actions on top will be processed first.
+</div></p>
+<p>Action related configuration should be done in a dedicated config parameters (every action defines its own configuration structure). For example:</p>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">less</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">files</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="s">&#39;app/less/main.less&#39;</span><span class="p p-Indicator">:</span> <span class="s">&quot;static/css/main.min.css&quot;</span>
+</pre></div>
+<h2 id="built-in-actions">Built-in actions</h2>
+<p>VictorPy 0.1.32 ships with a set of predefined actions:</p>
+<h3 id="compile-less-files">compile_less_files</h3>
+<p><a href="http://lesscss.org/">Less</a> is a CSS pre-processor. The <code>compile_less_files</code> takes your Less files and transpile it into plain CSS files.</p>
+<h4 id="config-yaml">config.yaml</h4>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">hooks</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">after_render</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">copy_files(front)</span>
+
+<span class="l l-Scalar l-Scalar-Plain">less</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">files</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="s">&#39;app/less/regular.less&#39;</span><span class="p p-Indicator">:</span> <span class="s">&quot;static/css/regular.css&quot;</span>
+        <span class="p p-Indicator">-</span> <span class="s">&#39;app/less/home.less&#39;</span><span class="p p-Indicator">:</span> <span class="s">&quot;static/css/home.css&quot;</span>
+        <span class="p p-Indicator">-</span> <span class="s">&#39;app/less/other.less&#39;</span><span class="p p-Indicator">:</span> <span class="s">&quot;static/css/other.css&quot;</span>
+</pre></div>
+<hr>
+<h3 id="copy-files">copy_files</h3>
+<p>This action allow you to collect static files (inspired by the <a href="https://docs.djangoproject.com/fr/1.11/ref/contrib/staticfiles/">Django collectstatic</a> command).</p>
+<h4 id="config-yaml-1">config.yaml</h4>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">hooks</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">after_render</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">copy_files(front)</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">copy_files(static)</span>
+
+<span class="l l-Scalar l-Scalar-Plain">copy_files</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">front</span><span class="p p-Indicator">:</span>
+        <span class="s">&#39;app/__javascript__/main.js&#39;</span><span class="p p-Indicator">:</span> <span class="s">&quot;static/js/main.js&quot;</span>
+        <span class="s">&#39;app/__javascript__/other.js&#39;</span><span class="p p-Indicator">:</span> <span class="s">&quot;static/js/other.js&quot;</span>
+    <span class="l l-Scalar l-Scalar-Plain">static</span><span class="p p-Indicator">:</span>
+        <span class="s">&#39;/toto&#39;</span><span class="p p-Indicator">:</span> <span class="s">&#39;tata&#39;</span>
+</pre></div>
+<hr>
+<h3 id="minify-html">minify_html</h3>
+<p>Delete spaces in HTML files. Operates on files located in <a href="/getting-started/configuration/">build_path</a>.</p>
+<h4 id="config-yaml-2">config.yaml</h4>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">hooks</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">after_build</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">minify_html</span>
+</pre></div>
+<hr>
+<h3 id="create-lunr-index">create_lunr_index</h3>
+<p>This hook creates an index file for using with the <a href="https://lunrjs.com/">Lunr search engine</a>.</p>
+<h4 id="config-yaml-3">config.yaml</h4>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">hooks</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">after_render</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">create_lunr_index</span>
+</pre></div>
+<h2 id="user-defined-hooks">User-defined hooks</h2>
+<p>To be documented.</p>
+
+        </div>
+
+        <div class="col-md-4 col-lg-4">
+
+            <h3>Site tags</h3>
+            <ul>
+                
+                    <li>
+                        <a href="/tags/serve/">serve</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/build/">build</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/hook/">hook</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/action/">action</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/customization/">customization</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/path/">path</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/Markdown/">Markdown</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/front matter/">front matter</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/Yaml/">Yaml</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/tags/">tags</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/draft/">draft</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/images/">images</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/CSS/">CSS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/JS/">JS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/assets/">assets</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/contact/">contact</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/syndication/">syndication</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/config/">config.yaml</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/debug/">debug</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/pip/">pip</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/structure/">structure</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/context/">context</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/mini-context/">mini-context</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/advanced/">advanced</a>
+                    </li>
+                
+            </ul>
+
+        </div>
+    </div>
+
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script>
+        $("table").addClass("table table-hover");
+        $("div.page img").addClass("img-responsive");
+    </script>
+
+    
+
+</body>
+</html>

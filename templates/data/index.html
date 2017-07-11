@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta name="generator" content="VictorPy 0.1.32" />
+
+    <title>Data available in templates</title>
+
+    
+        <meta description="A list of available values in your templates.">
+    
+
+    
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/css/borland.css">
+
+    <style>
+        body {
+            padding-top: 80px;
+            font-size: 18px;
+        }
+    </style>
+
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://pascallando.github.io/index.xml">
+    
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button> <a class="navbar-brand" href="/">VictorPy</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="nav navbar-nav">
+                     
+                        <li>
+                            <a href="/getting-started/">Getting started</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/content/">Writing content</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/templates/">Templates</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/build-process/">The site building process</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/extra/">Extra</a>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+    <div class="row">
+        <div class="col-md-8 col-lg-8">
+
+            <h1>Data available in templates</h1>
+
+            <h2 id="preamble">Preamble</h2>
+<p>In every template, VictorPy 0.1.32 provides you with a lot of data about:</p>
+<ul>
+<li>The page</li>
+<li>The site</li>
+</ul>
+<p>This dataset is called the <strong>page context</strong>.</p>
+<p>Every parameters you defined in a content page <a href="/content/content-pages/">front matter</a> is available in the page context.</p>
+<p>For example, let say we have a content page <code>my_page.md</code>:</p>
+<h4 id="content-my-page-md">content/my_page.md</h4>
+
+<pre><code>---
+title: My page title
+something: This is something!
+---
+
+Some **content** here…</code></pre>
+<p>In the template, you have an access to every parameter, so you can do:</p>
+<h4 id="templates-page-html">templates/page.html</h4>
+<div class="highlight"><pre><span></span>The title of this page is {{ title }}, and here is something: {{ something }}
+
+{{ content }}
+</pre></div>
+<p>When rendering, you should get:</p>
+<div class="highlight"><pre><span></span>The title of this page is My page title, and here is something: This is something!
+
+Some <span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>content<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span> here…
+</pre></div>
+<h2 id="the-page-dict">The page dict</h2>
+<p>In addition to your own parameters, VictorPy 0.1.32 will populate you context with some extra stuff:</p>
+<table>
+<thead><tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>unique_id</code></td>
+<td style="text-align:left">Number</td>
+<td style="text-align:left">A unique identifier for the page.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>shortest_title</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">The shortest title between <code>title</code> and <code>short_title</code>.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>longest_title</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">The longest title between <code>title</code> and <code>long_title</code>.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>breadcrumb</code></td>
+<td style="text-align:left">List[Dict]</td>
+<td style="text-align:left">A list of mini-contexts of the pages in this page breadcrumb path.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>content</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">The HTML rendered version of your markdown source.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>permalink</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>url</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">Relative URL of the page.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>slug</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>section_pages</code></td>
+<td style="text-align:left">List[Dict]</td>
+<td style="text-align:left">A list of mini-contexts of all the pages of current section (ordered by <code>position</code>).</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>section_page</code></td>
+<td style="text-align:left">Dict</td>
+<td style="text-align:left">The mini-context of the index of this page's section index.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>section_sections</code></td>
+<td style="text-align:left">List[Dict]</td>
+<td style="text-align:left">A list of mini-contexts of all the subsections of this page section parent, i.e. a list of this page section brothers (ordered by <code>position</code>).</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>sub_sections</code></td>
+<td style="text-align:left">List[Dict]</td>
+<td style="text-align:left">A list of mini-contexts of all the subsections of this page (ordered by <code>position</code>).</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>is_section_index</code></td>
+<td style="text-align:left">Boolean</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>site</code></td>
+<td style="text-align:left">Dict</td>
+<td style="text-align:left">The site dict: see <a href="#the-site-dict">below</a>.</td>
+</tr>
+</tbody>
+</table>
+<p><div class="alert alert-warning"><strong style="font-variant: small-caps">Mini-context</strong> –
+A mini-context is a dict containing a restricted set of a page context. It is used in the list of pages (i.e. <code>section_pages</code>, <code>sub_sections</code>…).
+</div></p>
+<h3 id="the-site-dict">The site dict</h3>
+<p>In addition to page data, you can access site wide data in every template.</p>
+<table>
+<thead><tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>site.base_url</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>site.engine</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">The version of the build engine.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>site.render_id</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">A unique id, refreshed every time the site is rendered.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>site.root_sections</code></td>
+<td style="text-align:left">List[Section]</td>
+<td style="text-align:left">A list of all root sections of this site, i.e. sections which has no parent.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>site.title</code></td>
+<td style="text-align:left">String</td>
+</tr>
+</tbody>
+</table>
+<p>Note: your can define other site constants in the <a href="/getting-started/configuration/">config file</a> to make them available in every page.</p>
+
+        </div>
+
+        <div class="col-md-4 col-lg-4">
+
+            <h3>Site tags</h3>
+            <ul>
+                
+                    <li>
+                        <a href="/tags/serve/">serve</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/build/">build</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/hook/">hook</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/action/">action</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/customization/">customization</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/path/">path</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/Markdown/">Markdown</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/front matter/">front matter</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/Yaml/">Yaml</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/tags/">tags</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/draft/">draft</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/images/">images</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/CSS/">CSS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/JS/">JS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/assets/">assets</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/contact/">contact</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/syndication/">syndication</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/config/">config.yaml</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/debug/">debug</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/pip/">pip</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/structure/">structure</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/context/">context</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/mini-context/">mini-context</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/advanced/">advanced</a>
+                    </li>
+                
+            </ul>
+
+        </div>
+    </div>
+
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script>
+        $("table").addClass("table table-hover");
+        $("div.page img").addClass("img-responsive");
+    </script>
+
+    
+
+</body>
+</html>

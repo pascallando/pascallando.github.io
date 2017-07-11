@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta name="generator" content="VictorPy 0.1.32" />
+
+    <title>Routes</title>
+
+    
+        <meta description="Routes are paths to resources.">
+    
+
+    
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/css/borland.css">
+
+    <style>
+        body {
+            padding-top: 80px;
+            font-size: 18px;
+        }
+    </style>
+
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://pascallando.github.io/index.xml">
+    
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button> <a class="navbar-brand" href="/">VictorPy</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="nav navbar-nav">
+                     
+                        <li>
+                            <a href="/getting-started/">Getting started</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/content/">Writing content</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/templates/">Templates</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/build-process/">The site building process</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/extra/">Extra</a>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+    <div class="row">
+        <div class="col-md-8 col-lg-8">
+
+            <h1>Routes</h1>
+
+            <p>Routes are paths to resources.</p>
+<p>When rendering/building your site, VictorPy 0.1.32 automatically creates routes to your pages, using a simple mapping <em>file path &rarr; resource path</em>.</p>
+<p>For example, if you create a file <code>cat.md</code> in a directory called <code>animals</code> at the root of your site content (<code>/content/animals/cat.md</code>), then you will be able to access the following URL: <code>http://127.0.0.1:5000/animals/cat/</code> and see your rendered cat page.</p>
+<p>Thus, you will sometimes need to define extra-routes to non content resources.</p>
+<h2 id="builtin-routes">Builtin routes</h2>
+<p>VictorPy 0.1.32 ships with a set of predefined extra-routes:</p>
+<ul>
+<li><code>/tags</code>: a route to the page listing the site tags.</li>
+<li><code>/tags/*</code>: a route to a specific page for each tag.</li>
+<li><code>/contact</code>: a route to a prebuilt contact page.</li>
+<li><code>/rss</code>: a route to a prebuilt RSS feed resource listing the site pages.</li>
+</ul>
+<h2 id="defining-routes">Defining routes</h2>
+<p>To define your own routes, you have to set your paths in the <code>routes</code> <a href="/getting-started/configuration/">config parameter</a>.</p>
+<p>Every routes associates an URL pattern to a template.</p>
+<h3 id="custom-route-example">Custom route example</h3>
+<p>Let's say you want to create a survey form for your site.</p>
+<p>You want this survey to be accessible from the <code>/survey/</code> URL.</p>
+<p>First, define the route in the config file <code>routes</code> parameter:</p>
+<h4 id="config-yaml">config.yaml</h4>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">routes</span><span class="p p-Indicator">:</span>
+  <span class="s">&#39;survey.html&#39;</span><span class="p p-Indicator">:</span> <span class="s">&#39;/survey&#39;</span>
+</pre></div>
+<p>Then, create a template called <code>survey.html</code> in the <code>templates</code> directory:</p>
+<h4 id="templates-survey-html">templates/survey.html</h4>
+<div class="highlight"><pre><span></span>{% extends &quot;base.html&quot; %}
+
+{% block title %}Survey{% endblock %}
+
+{% block before_endbody %}
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://surveyjs.azureedge.net/0.12.18/survey.jquery.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="nx">Survey</span><span class="p">.</span><span class="nx">Survey</span><span class="p">.</span><span class="nx">cssType</span> <span class="o">=</span> <span class="s2">&quot;bootstrap&quot;</span><span class="p">;</span>
+    <span class="nx">Survey</span><span class="p">.</span><span class="nx">defaultBootstrapCss</span><span class="p">.</span><span class="nx">navigationButton</span> <span class="o">=</span> <span class="s2">&quot;btn btn-green&quot;</span><span class="p">;</span>
+
+    <span class="nb">window</span><span class="p">.</span><span class="nx">survey</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Survey</span><span class="p">.</span><span class="nx">Model</span><span class="p">({</span> <span class="nx">questions</span><span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;radiogroup&quot;</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;car&quot;</span><span class="p">,</span> <span class="nx">title</span><span class="o">:</span> <span class="s2">&quot;What car are you driving?&quot;</span><span class="p">,</span> <span class="nx">isRequired</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+         <span class="nx">colCount</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span> <span class="nx">choices</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;None&quot;</span><span class="p">,</span> <span class="s2">&quot;Ford&quot;</span><span class="p">,</span> <span class="s2">&quot;Vauxhall&quot;</span><span class="p">,</span> <span class="s2">&quot;Volkswagen&quot;</span><span class="p">,</span> <span class="s2">&quot;Nissan&quot;</span><span class="p">,</span> <span class="s2">&quot;Audi&quot;</span><span class="p">,</span> <span class="s2">&quot;Mercedes-Benz&quot;</span><span class="p">,</span> <span class="s2">&quot;BMW&quot;</span><span class="p">,</span> <span class="s2">&quot;Peugeot&quot;</span><span class="p">,</span> <span class="s2">&quot;Toyota&quot;</span><span class="p">,</span> <span class="s2">&quot;Citroen&quot;</span><span class="p">]</span> <span class="p">}</span>
+    <span class="p">]});</span>
+    <span class="nx">survey</span><span class="p">.</span><span class="nx">onComplete</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#surveyResult&#39;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">&quot;result: &quot;</span> <span class="o">+</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+    <span class="p">});</span>
+
+
+    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#surveyElement&quot;</span><span class="p">).</span><span class="nx">Survey</span><span class="p">({</span><span class="nx">model</span><span class="o">:</span><span class="nx">survey</span><span class="p">});</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+{% endblock before_endbody %}
+
+
+{% block main %}
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;surveyElement&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;surveyResult&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+{% endblock main %}
+</pre></div>
+<p>OK! Our new route is now available: <a href="/survey/">/survey/</a>.</p>
+<p><div class="alert alert-info"><strong style="font-variant: small-caps">Note</strong> –
+You can extend whatever template you need when defining a new route template (we just extended the <code>base.html</code> template in this example).
+</div></p>
+
+        </div>
+
+        <div class="col-md-4 col-lg-4">
+
+            <h3>Site tags</h3>
+            <ul>
+                
+                    <li>
+                        <a href="/tags/serve/">serve</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/build/">build</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/hook/">hook</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/action/">action</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/customization/">customization</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/path/">path</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/Markdown/">Markdown</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/front matter/">front matter</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/Yaml/">Yaml</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/tags/">tags</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/draft/">draft</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/images/">images</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/CSS/">CSS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/JS/">JS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/assets/">assets</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/contact/">contact</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/syndication/">syndication</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/config/">config.yaml</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/debug/">debug</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/pip/">pip</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/structure/">structure</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/context/">context</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/mini-context/">mini-context</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/advanced/">advanced</a>
+                    </li>
+                
+            </ul>
+
+        </div>
+    </div>
+
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script>
+        $("table").addClass("table table-hover");
+        $("div.page img").addClass("img-responsive");
+    </script>
+
+    
+
+</body>
+</html>

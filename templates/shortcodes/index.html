@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta name="generator" content="VictorPy 0.1.32" />
+
+    <title>Shortcodes</title>
+
+    
+        <meta description="Shortcodes allow you to extend your markdown vocabulary.">
+    
+
+    
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/css/borland.css">
+
+    <style>
+        body {
+            padding-top: 80px;
+            font-size: 18px;
+        }
+    </style>
+
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://pascallando.github.io/index.xml">
+    
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button> <a class="navbar-brand" href="/">VictorPy</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="nav navbar-nav">
+                     
+                        <li>
+                            <a href="/getting-started/">Getting started</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/content/">Writing content</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/templates/">Templates</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/build-process/">The site building process</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/extra/">Extra</a>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+    <div class="row">
+        <div class="col-md-8 col-lg-8">
+
+            <h1>Shortcodes</h1>
+
+            <p>Shortcodes are simple snippets that you can include in your <a href="/content/content-pages/">markdown content files</a>. VictorPy 0.1.32 will render it using a predefined template.</p>
+<p><div class="alert alert-warning"><strong style="font-variant: small-caps">Performance</strong> –
+Shortcode processing is enabled by default. Thus, shortcodes have a performance cost when rendering/building your site: you can disable shortcodes processing by setting the site <a href="/getting-started/configuration/">configuration parameter</a> <code>enable_shortcodes</code> to <code>False</code>.
+</div></p>
+<h2 id="shortcode-usage-syntax">Shortcode usage syntax</h2>
+<p>You can include shortcodes in your content using the following syntax:</p>
+
+<pre><code>{% the_shortcode_name %}</code></pre>
+<h2 id="built-in-shortcodes">Built-in shortcodes</h2>
+<p>VictorPy 0.1.32 ships with a set of predefined shortcodes:</p>
+<h3 id="sectionpages">sectionpages</h3>
+<p>Generates a list of links to the pages of current section (useful for section's index page).</p>
+<h4 id="example">Example</h4>
+
+<pre><code>{% sectionpages %}</code></pre>
+<p>For example, this shortcode used in the current page outputs the following:</p>
+<p>
+        <div class="list-group">
+            
+                <a class="list-group-item" href="/templates/default-templates/">
+                    <h4 class="list-group-item-heading">
+                        Default templates
+                    </h4>
+                    <p class="list-group-item-text text-muted small">
+                        
+                            List of default templates included.<br />
+                        
+                        
+                    </p>
+                </a>
+            
+                <a class="list-group-item" href="/templates/custom-templates/">
+                    <h4 class="list-group-item-heading">
+                        Custom templates
+                    </h4>
+                    <p class="list-group-item-text text-muted small">
+                        
+                            Learn how to define your own custom templates.<br />
+                        
+                        
+                    </p>
+                </a>
+            
+                <a class="list-group-item" href="/templates/data/">
+                    <h4 class="list-group-item-heading">
+                        Data available in templates
+                    </h4>
+                    <p class="list-group-item-text text-muted small">
+                        
+                            A list of available values in your templates.<br />
+                        
+                        
+                            <small class="label label-primary label-tag">context</small>
+                        
+                            <small class="label label-primary label-tag">mini-context</small>
+                        
+                    </p>
+                </a>
+            
+                <a class="list-group-item" href="/templates/shortcodes/">
+                    <h4 class="list-group-item-heading">
+                        Shortcodes
+                    </h4>
+                    <p class="list-group-item-text text-muted small">
+                        
+                            Shortcodes allow you to extend your markdown vocabulary.<br />
+                        
+                        
+                            <small class="label label-primary label-tag">advanced</small>
+                        
+                            <small class="label label-primary label-tag">customization</small>
+                        
+                    </p>
+                </a>
+            
+        </div>
+    </p>
+<hr>
+<h3 id="figure">figure</h3>
+<p>Allow you to show complete figure as a one-liner.</p>
+<h4 id="parameters">Parameters</h4>
+<ul>
+<li><code>src</code>: The address of the resource (may be something like "/static/images/my-image.jpg")</li>
+<li><code>alt</code>: An alternative text for the resource (think <a href="https://www.w3.org/WAI/intro/accessibility.php">accessibility</a>…)</li>
+<li><code>caption</code>: A descriptive text to show under the figure. If not provided, <code>alt</code> value will be used.</li>
+</ul>
+<h4 id="example-1">Example</h4>
+
+<pre><code>{% figure src="//blog.lamaisondelamontagne.org/public/images/2011/Victor_Hugo_001.jpg" alt="Victor Hugo" %}</code></pre>
+<p>
+        <figure>
+            <img src="//blog.lamaisondelamontagne.org/public/images/2011/Victor_Hugo_001.jpg" alt="Victor Hugo" class="img-responsive">
+            <figcaption>
+                <p><span style="font-variant-caps: small-caps">Figure – </span>Victor Hugo</p>
+            </figcaption>
+        </figure>
+    </p>
+<hr>
+<h3 id="amazon">amazon</h3>
+<p>Generate ready-to-fly Amazon products links.</p>
+<h4 id="parameters-1">Parameters</h4>
+<ul>
+<li><code>code_type</code>: "url", "image" or "snippet"</li>
+<li><code>asin</code>: The <a href="https://en.wikipedia.org/wiki/Amazon_Standard_Identification_Number">Amazon Standard Identification Number</a> of the product to show.</li>
+<li><code>title</code>: A title to display under the product (only for <em>snippet</em>).</li>
+</ul>
+<p><div class="alert alert-info"><strong style="font-variant: small-caps">Associate ID</strong> –
+The shortcode can include your Amazon associate ID in the links. Just make sure to have the <code>amazon_id</code> parameter defined in your <a href="/getting-started/configuration/">configuration file</a>.
+</div></p>
+<h4 id="example-2">Example</h4>
+
+<pre><code>{% amazon image B072QZZDV7 %}</code></pre>
+<p>…outputs this:</p>
+<p><a href="http://www.amazon.fr/gp/product/B072QZZDV7/ref=as_li_ss_il?ie=UTF8&camp=1642&creative=19458&creativeASIN=B072QZZDV7&linkCode=as2&tag="><img src="http://ws-eu.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B072QZZDV7&Format=_SL160_&ID=AsinImage&MarketPlace=FR&ServiceVersion=20070822&WS=1" alt="Article" /></a></p>
+<hr>
+<h3 id="tweet">tweet</h3>
+<p>Display a tweet.</p>
+<h4 id="parameters-2">Parameters</h4>
+<ul>
+<li><code>id</code>: The Twitter tweet id.</li>
+</ul>
+<h4 id="example-3">Example</h4>
+
+<pre><code>{% tweet 860599072234844160 %}</code></pre>
+<p><blockquote class="twitter-tweet"><p lang="en" dir="ltr">The new mypy release is ready! <a href="https://t.co/82F7i51Q6d">https://t.co/82F7i51Q6d</a></p>&mdash; Guido van Rossum (@gvanrossum) <a href="https://twitter.com/gvanrossum/status/860599072234844160">May 5, 2017</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+<hr>
+<h3 id="alert-endalert">alert […] endalert</h3>
+<p>To be documented.</p>
+<h3 id="row-endrow">row […] endrow</h3>
+<p>To be documented.</p>
+<h3 id="col-endcol">col […] endcol</h3>
+<p>To be documented.</p>
+<h3 id="pull-endpull">pull […] endpull</h3>
+<p>To be documented.</p>
+<h2 id="user-defined-shortcodes">User defined shortcodes</h2>
+<p>You can create your own shortcodes in order to extend existing VictorPy 0.1.32 features:</p>
+<ol>
+<li>Create a new file called <code>shortcodes.py</code> in your project directory.</li>
+<li>Add one function per shortcode to process (the function name is the shortcode name).</li>
+<li>Use your shortcode in whatever content page you want!</li>
+</ol>
+<h3 id="the-context-parameter">The context parameter</h3>
+<p>Every shortcode function gets a special <code>context</code> parameter, which contains the full context on the page using the shortcode.</p>
+<h4 id="shortcodes-py">shortcodes.py</h4>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s2">&quot;Hello, we&#39;re on {page_title}!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">page_title</span><span class="o">=</span><span class="n">context</span><span class="p">[</span><span class="s1">&#39;page&#39;</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">])</span>
+</pre></div>
+<h4 id="my-page-md">my-page.md</h4>
+
+<pre><code>{% hello %}</code></pre>
+<p>Here is the result, when used on the current page:</p>
+<p><div class="alert alert-info">
+Hello, we're on Shortcodes!
+</div></p>
+<h3 id="extra-parameters">Extra parameters</h3>
+<p>You can specify other parameters to customize your shortcodes behaviour.</p>
+<p>Let's say we want to create a shortcode to display the factorial of a number. We'd like to use it this way, with a <strong>custom parameters</strong> to get the number to factorialize:</p>
+
+<pre><code>The factorial of number 4 is {% factorial 4 %}.</code></pre>
+<p>Let's go ahead and create the factorial function in our <code>shortcodes.py</code> file:</p>
+<h4 id="shortcodes-py-1">shortcodes.py</h4>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">factorial</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">n</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">num</span> <span class="o">=</span> <span class="n">num</span> <span class="o">*</span> <span class="n">n</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</pre></div>
+<h4 id="my-page-md-1">my-page.md</h4>
+
+<pre><code>The factorial of number 4 is {% factorial 4 %}.</code></pre>
+<p>Here is the result:</p>
+<p><div class="alert alert-info">
+The factorial of number 4 is 24.
+</div></p>
+
+        </div>
+
+        <div class="col-md-4 col-lg-4">
+
+            <h3>Site tags</h3>
+            <ul>
+                
+                    <li>
+                        <a href="/tags/serve/">serve</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/build/">build</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/hook/">hook</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/action/">action</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/customization/">customization</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/path/">path</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/Markdown/">Markdown</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/front matter/">front matter</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/Yaml/">Yaml</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/tags/">tags</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/draft/">draft</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/images/">images</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/CSS/">CSS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/JS/">JS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/assets/">assets</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/contact/">contact</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/syndication/">syndication</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/config/">config.yaml</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/debug/">debug</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/pip/">pip</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/structure/">structure</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/context/">context</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/mini-context/">mini-context</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/advanced/">advanced</a>
+                    </li>
+                
+            </ul>
+
+        </div>
+    </div>
+
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script>
+        $("table").addClass("table table-hover");
+        $("div.page img").addClass("img-responsive");
+    </script>
+
+    
+
+</body>
+</html>

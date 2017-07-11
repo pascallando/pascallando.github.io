@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta name="generator" content="VictorPy 0.1.32" />
+
+    <title>VictorPy documentation site</title>
+
+    
+        <meta description="This site is the reference manual for the Python static site generator.">
+    
+
+    
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/css/borland.css">
+
+    <style>
+        body {
+            padding-top: 80px;
+            font-size: 18px;
+        }
+    </style>
+
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://pascallando.github.io/index.xml">
+    
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button> <a class="navbar-brand" href="/">VictorPy</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="nav navbar-nav">
+                     
+                        <li>
+                            <a href="/getting-started/">Getting started</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/content/">Writing content</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/templates/">Templates</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/build-process/">The site building process</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/extra/">Extra</a>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+    <div class="row">
+        <div class="col-md-8 col-lg-8">
+
+            <h1>VictorPy documentation site</h1>
+
+            <p>VictorPy 0.1.32 is a <strong>simple yet powerful static site generator</strong>.</p>
+<p>It is inspired by <a href="http://spf13.com/">Steve Francia</a>'s <em><a href="https://gohugo.io/">Hugo</a></em>, with less talent but some pythonic sugar :)</p>
+<p>Features:</p>
+<ul>
+<li>Jinja2 templating.</li>
+<li>Shortcodes.</li>
+<li>Hooks.</li>
+<li>Action pipeline (collecting files, compiling Less/Transcrypt…).</li>
+<li>Live server/debug.</li>
+<li>Easy customization.</li>
+<li>Pretty fast.</li>
+</ul>
+<h2 id="why-a-new-static-site-generator">Why a new static site generator?</h2>
+<p>After having tested many awesome static generator, if you're not totally convinced, check this.</p>
+<h3 id="python">☺ Python.</h3>
+<p>VictorPy 0.1.32 is <strong><a href="https://www.python.org/">Python 3</a> powered</strong>.</p>
+<p>You will write <a href="/templates/shortcodes/">shortcodes</a> as Python functions, as well as <a href="/build-process/hooks/">hook actions</a>, taking advantage of the amazing Python libs ecosystem.</p>
+<h3 id="content-driven">☺ Content driven</h3>
+<p>Static site generators usually make some funky assumptions about how to map the content tree to site URLs.</p>
+<p>VictorPy 0.1.32 has a simple rule: <strong>strict content to URL mapping</strong>. Folders become sections. Sub-folders become sub-sections. Files become pages.</p>
+<p>Custom <a href="/build-process/routes/">routing</a> available for no-content "direct to template" URLs.</p>
+<h3 id="want-something-really-simple">☺ Want something really simple?</h3>
+<p>For every Python lover, <strong>syntax and readability matters</strong>.</p>
+<p><div class="row"></p>
+<p><div class="col-md-6 col-lg-6"></p>
+<h4 id="hugo">Hugo</h4>
+<div class="highlight"><pre><span></span><span class="p">{{</span> <span class="k">if</span> <span class="nx">isset</span> <span class="p">.</span><span class="nx">Params</span> <span class="s">&quot;title&quot;</span> <span class="p">}}</span>
+    <span class="p">&lt;</span><span class="nx">h4</span><span class="p">&gt;{{</span> <span class="nx">index</span> <span class="p">.</span><span class="nx">Params</span> <span class="s">&quot;title&quot;</span> <span class="p">}}&lt;</span><span class="o">/</span><span class="nx">h4</span><span class="p">&gt;</span>
+<span class="p">{{</span> <span class="nx">end</span> <span class="p">}}</span>
+</pre></div>
+<p></div></p>
+<p><div class="col-md-6 col-lg-6"></p>
+<h4 id="victorpy-0-1-32">VictorPy 0.1.32</h4>
+<div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">if</span> <span class="nv">params.title</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">    &lt;h4&gt;</span><span class="cp">{{</span> <span class="nv">params.title</span> <span class="cp">}}</span><span class="x">&lt;/h4&gt;</span>
+<span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+<p></div></p>
+<p></div></p>
+<h3 id="full-stack">☺ Full stack</h3>
+<p>VictorPy 0.1.32 covers the <strong>static site building process from A to Z</strong>: render pages, build site and execute all the tasks you need thank to hooks, without requirering other frameworks/languages. No Grunt/Gulp/Webpack needed.</p>
+
+        </div>
+
+        <div class="col-md-4 col-lg-4">
+
+            <h3>Site tags</h3>
+            <ul>
+                
+                    <li>
+                        <a href="/tags/serve/">serve</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/build/">build</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/hook/">hook</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/action/">action</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/customization/">customization</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/path/">path</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/Markdown/">Markdown</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/front matter/">front matter</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/Yaml/">Yaml</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/tags/">tags</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/draft/">draft</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/images/">images</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/CSS/">CSS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/JS/">JS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/assets/">assets</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/contact/">contact</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/syndication/">syndication</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/config/">config.yaml</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/debug/">debug</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/pip/">pip</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/structure/">structure</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/context/">context</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/mini-context/">mini-context</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/advanced/">advanced</a>
+                    </li>
+                
+            </ul>
+
+        </div>
+    </div>
+
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script>
+        $("table").addClass("table table-hover");
+        $("div.page img").addClass("img-responsive");
+    </script>
+
+    
+
+</body>
+</html>
